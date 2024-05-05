@@ -13,12 +13,23 @@ public class CalculatorController :ControllerBase
     }
 
     [HttpGet("sum/{firstNumber}/{secondNumber}")]
-    public IActionResult Get(string firstNumber, string secondNumber)
+    public IActionResult GetAddition(string firstNumber, string secondNumber)
     {
         if(decimal.TryParse(firstNumber, out decimal first) && decimal.TryParse(secondNumber, out decimal second))
         {
             var sum = first + second;
             return Ok(sum.ToString());
+        }
+        return BadRequest("Invalid Input");
+    }
+
+    [HttpGet("sub/{firstNumber}/{secondNumber}")]
+    public IActionResult GetSubtraction(string firstNumber, string secondNumber)
+    {
+        if (decimal.TryParse(firstNumber, out decimal first) && decimal.TryParse (secondNumber, out decimal second))
+        {
+            var sub = first - second;
+            return Ok(sub.ToString());
         }
         return BadRequest("Invalid Input");
     }

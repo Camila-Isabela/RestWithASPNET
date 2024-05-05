@@ -34,4 +34,15 @@ public class CalculatorController :ControllerBase
         return BadRequest("Invalid Input");
     }
 
+    [HttpGet("mul/{firstNumber}/{secondNumber}")]
+    public IActionResult GetMultiplication(string firstNumber, string secondNumber)
+    {
+        if(decimal.TryParse(firstNumber, out decimal first) && decimal.TryParse(secondNumber, out decimal second))
+        {
+            var mul = first * second;
+            return Ok(mul.ToString());
+        }
+        return BadRequest("Invalid Input");
+    }
+
 }

@@ -45,4 +45,15 @@ public class CalculatorController :ControllerBase
         return BadRequest("Invalid Input");
     }
 
+    [HttpGet("div/{firstNumber}/{secondNumber}")]
+    public IActionResult GetDivision(string firstNumber, string secondNumber)
+    {
+        if(decimal.TryParse(firstNumber, out decimal first) && decimal.TryParse(secondNumber, out decimal second))
+        {
+            var div = first / second;
+            return Ok(div.ToString());
+        }
+        return BadRequest("Invalid Input");
+    }
+
 }

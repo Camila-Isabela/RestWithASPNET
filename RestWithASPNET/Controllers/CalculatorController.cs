@@ -17,8 +17,8 @@ public class CalculatorController :ControllerBase
     {
         if(decimal.TryParse(firstNumber, out decimal first) && decimal.TryParse(secondNumber, out decimal second))
         {
-            var sum = first + second;
-            return Ok(sum.ToString());
+            var result = first + second;
+            return Ok(result.ToString());
         }
         return BadRequest("Invalid Input");
     }
@@ -28,8 +28,8 @@ public class CalculatorController :ControllerBase
     {
         if (decimal.TryParse(firstNumber, out decimal first) && decimal.TryParse (secondNumber, out decimal second))
         {
-            var sub = first - second;
-            return Ok(sub.ToString());
+            var result = first - second;
+            return Ok(result.ToString());
         }
         return BadRequest("Invalid Input");
     }
@@ -39,8 +39,8 @@ public class CalculatorController :ControllerBase
     {
         if(decimal.TryParse(firstNumber, out decimal first) && decimal.TryParse(secondNumber, out decimal second))
         {
-            var mul = first * second;
-            return Ok(mul.ToString());
+            var result = first * second;
+            return Ok(result.ToString());
         }
         return BadRequest("Invalid Input");
     }
@@ -50,10 +50,31 @@ public class CalculatorController :ControllerBase
     {
         if(decimal.TryParse(firstNumber, out decimal first) && decimal.TryParse(secondNumber, out decimal second))
         {
-            var div = first / second;
-            return Ok(div.ToString());
+            var result = first / second;
+            return Ok(result.ToString());
         }
         return BadRequest("Invalid Input");
     }
 
+    [HttpGet("med/{firstNumber}/{secondNumber}")]
+    public IActionResult GetMedia(string firstNumber, string secondNumber)
+    {
+        if(decimal.TryParse(firstNumber, out decimal first) && decimal.TryParse(secondNumber, out decimal second))
+        {
+            var result = (first + second)/2;
+            return Ok(result.ToString());
+        }
+        return BadRequest("Invalid Input");
+    }
+
+    [HttpGet("square-root/{number}")]
+    public IActionResult GetSquareRoot(string number)
+    {
+        if(double.TryParse(number, out double num))
+        {
+            var result = Math.Sqrt(num);
+            return Ok(result.ToString());
+        }
+        return BadRequest("Invalid Input");
+    }
 }
